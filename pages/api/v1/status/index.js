@@ -1,4 +1,6 @@
 import database from "infra/database.js";
+import { getVersion } from "jest";
+import { version } from "react";
 
 async function status(request, response) {
   const updatedAt = new Date().toISOString();
