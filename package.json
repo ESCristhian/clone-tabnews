@@ -12,8 +12,8 @@
     "lint:fix": "prettier --write .",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "migration:create": "node-pg-migrate --migration-dir infra/migrations create",
-    "migration:up": "node-pg-migrate --migration-dir infra/migrations --envPath .env.development up"
+    "migration:create": "node-pg-migrate --migrations-dir infra/migrations create",
+    "migration:up": "node-pg-migrate --migrations-dir infra/migrations --envPath .env.development up"
   },
   "author": "",
   "license": "MIT",
