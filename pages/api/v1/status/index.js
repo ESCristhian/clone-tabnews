@@ -33,10 +33,10 @@ async function status(request, response) {
       cause: error,
     });
 
-    console.log("\n Erro dentro do catch do controller");
+    console.log("\n Erro dentro do catch do controller:");
     console.error(publicErrorObject);
 
-    response.status(500).json({ publicErrorObject });
+    response.status(500).json(publicErrorObject);
   }
 }
 export default status;
