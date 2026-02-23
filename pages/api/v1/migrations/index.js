@@ -9,16 +9,16 @@ router.post(postHandler);
 export default router.handler(controller.errorHandlerss);
 
 async function getHandler(request, response) {
-    const PendingMigrations = await migrator.listPendingMigrations()
-    return response.status(200).json(PendingMigrations);
+  const PendingMigrations = await migrator.listPendingMigrations();
+  return response.status(200).json(PendingMigrations);
 }
 
 async function postHandler(request, response) {
-    const migrateMigrations = await migrator.runPendingMigrations()
+  const migrateMigrations = await migrator.runPendingMigrations();
 
-    if (migrateMigrations.length > 0) {
-      return response.status(201).json(migrateMigrations);
-    }
-  
-    return response.status(200).json(migrateMigrations);
+  if (migrateMigrations.length > 0) {
+    return response.status(201).json(migrateMigrations);
+  }
+
+  return response.status(200).json(migrateMigrations);
 }
