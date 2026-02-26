@@ -26,13 +26,13 @@ async function clearDatabase() {
 }
 
 async function runPendingMigrations() {
-  await migrator.runPendingMigrations()
+  await migrator.runPendingMigrations();
 }
 
 const orcherstrator = {
   waitForAllServices,
   clearDatabase,
-  runPendingMigrations
+  runPendingMigrations,
 };
 
 export default orcherstrator;

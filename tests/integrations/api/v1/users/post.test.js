@@ -10,7 +10,6 @@ beforeAll(async () => {
 describe("POST /api/v1/users", () => {
   describe("Anonymous user", () => {
     test("With unique and valid data", async () => {
-
       const response = await fetch("http://localhost:3000/api/v1/users", {
         method: "POST",
         headers: {
@@ -19,8 +18,8 @@ describe("POST /api/v1/users", () => {
         body: JSON.stringify({
           username: "cristhianelias",
           email: "cristhian@gmail.com",
-          password: "senha123"
-        })
+          password: "senha123",
+        }),
       });
 
       expect(response.status).toBe(201);
@@ -36,9 +35,9 @@ describe("POST /api/v1/users", () => {
         updated_at: responseBody.updated_at,
       });
 
-      expect(uuidVersion(responseBody.id)).toEqual(4)
-      expect(Date.parse(responseBody.created_at)).not.toBeNaN()
-      expect(Date.parse(responseBody.updated_at)).not.toBeNaN()
+      expect(uuidVersion(responseBody.id)).toEqual(4);
+      expect(Date.parse(responseBody.created_at)).not.toBeNaN();
+      expect(Date.parse(responseBody.updated_at)).not.toBeNaN();
     });
 
     test("Duplicated Email", async () => {
@@ -50,12 +49,11 @@ describe("POST /api/v1/users", () => {
         body: JSON.stringify({
           username: "emailduplicado1",
           email: "duplicado@gmail.com",
-          password: "senha123"
-        })
+          password: "senha123",
+        }),
       });
 
       expect(response1.status).toBe(201);
-
 
       const response2 = await fetch("http://localhost:3000/api/v1/users", {
         method: "POST",
@@ -65,8 +63,8 @@ describe("POST /api/v1/users", () => {
         body: JSON.stringify({
           username: "emailduplicado2",
           email: "Duplicado@gmail.com",
-          password: "senha123"
-        })
+          password: "senha123",
+        }),
       });
 
       expect(response2.status).toBe(400);
@@ -81,12 +79,11 @@ describe("POST /api/v1/users", () => {
         body: JSON.stringify({
           username: "nomeduplicado",
           email: "email1@gmail.com",
-          password: "senha123"
-        })
+          password: "senha123",
+        }),
       });
 
       expect(response1.status).toBe(201);
-
 
       const response2 = await fetch("http://localhost:3000/api/v1/users", {
         method: "POST",
@@ -96,20 +93,20 @@ describe("POST /api/v1/users", () => {
         body: JSON.stringify({
           username: "Nomeduplicado",
           email: "email2@gmail.com",
-          password: "senha123"
-        })
+          password: "senha123",
+        }),
       });
 
       expect(response2.status).toBe(400);
-      
-      const response2Body = await response2.json()
+
+      const response2Body = await response2.json();
 
       expect(response2Body).toEqual({
         name: "ValidationError",
         message: "O nome de usuário informado já está sendo utilizado.",
         action: "Utilize outro nome de usuário para realizar o cadastro.",
-        status_code: 400
-      })
+        status_code: 400,
+      });
     });
   });
 });
