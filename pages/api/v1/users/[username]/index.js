@@ -1,7 +1,6 @@
 import { createRouter } from "next-connect";
 import controller from "infra/controller.js";
 import user from "models/user.js";
-import { findFiles } from "node_modules/eslint/lib/eslint/eslint-helpers";
 
 const router = createRouter();
 
