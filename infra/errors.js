@@ -5,7 +5,7 @@ export class InternalServerError extends Error {
     });
     this.name = "InternalServerError";
     this.action = "Entre em contato com o suporte";
-    this.statusCode = statusCode || "500";
+    this.statusCode = statusCode || 500;
   }
 
   toJSON() {
@@ -25,7 +25,7 @@ export class ServiceError extends Error {
     });
     this.name = "ServiceError";
     this.action = "Verifique se o serviço está disponível";
-    this.statusCode = "503";
+    this.statusCode = 503;
   }
 
   toJSON() {
@@ -46,6 +46,27 @@ export class ValidationError extends Error {
     this.name = "ValidationError";
     this.action = action || "Ajuste os dados enviados e tente novamente.";
     this.statusCode = 400;
+  }
+
+  toJSON() {
+    return {
+      name: this.name,
+      message: this.message,
+      action: this.action,
+      status_code: this.statusCode,
+    };
+  }
+}
+
+export class NotFoundError extends Error {
+  constructor({ cause, message, action }) {
+    super(message || "Não foi possível encontrar esse recurso no sistema.", {
+      cause,
+    });
+    this.name = "NotFoundError";
+    this.action =
+      action || "Verifique se os parâmetros enviados na consulta estão certos.";
+    this.statusCode = 404;
   }
 
   toJSON() {
